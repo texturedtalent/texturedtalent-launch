@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Start cookieyes banner --> <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/60e0cb3dca89cb6fbcc2fef431b0d7ac/script.js"></script> <!-- End cookieyes banner -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Engagement — The First Read™ | Textured Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #2A3340; --teal-mid: #56627A;
+    --mocha: #2A2330; --mocha-warm: #B55000;
+    --cream: #FAF7F3; --cream-deep: #CBC6C4;
+    --gold: #EAB373; --gold-light: #F2D2A0;
+    --text: #1A1614; --text-mid: #4C4F58; --white: #FDFBF7;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+  body { font-family: var(--sans); background: var(--white); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  /* HEADER */
+  header { background: var(--teal); padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(234, 179, 115,0.2); }
+  .logo { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--cream); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .logo span { color: var(--gold); }
+  .back-link { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234, 179, 115,0.7); text-decoration: none; transition: color 0.2s; }
+  .back-link:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero { background: var(--teal); padding: 4rem 2rem 3.5rem; text-align: center; border-bottom: 3px solid var(--gold); }
+  .hero-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 1rem; }
+  .hero p { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; font-style: italic; color: rgba(250, 247, 243,0.65); max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+  /* EFFECTIVE DATE */
+  .effective-bar { background: var(--cream); padding: 1rem 2rem; text-align: center; border-bottom: 1px solid var(--cream-deep); }
+  .effective-bar p { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mocha-warm); }
+
+  /* CONTENT */
+  .content-wrap { max-width: 800px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  /* INTRO */
+  .intro-note { background: var(--cream); border-left: 3px solid var(--gold); padding: 1.5rem 2rem; margin-bottom: 3rem; }
+  .intro-note p { font-family: var(--serif); font-size: 1.05rem; font-style: italic; color: var(--mocha); line-height: 1.65; }
+
+  /* SECTIONS */
+  .tos-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--cream-deep); }
+  .tos-section:last-of-type { border-bottom: none; }
+  .section-num { font-family: var(--serif); font-size: 0.75rem; font-weight: 400; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.3rem; display: block; }
+  .tos-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--teal); margin-bottom: 1.2rem; line-height: 1.2; }
+  .tos-section p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 0.9rem; }
+  .tos-section p:last-child { margin-bottom: 0; }
+  .tos-section p strong { color: var(--teal); font-weight: 600; }
+
+  /* LIST */
+  .tos-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+  .tos-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--text-mid); line-height: 1.65; }
+  .tos-list li::before { content: '✦'; color: var(--gold); font-size: 0.6rem; flex-shrink: 0; margin-top: 0.45rem; }
+
+  /* CALLOUT */
+  .tos-callout { background: var(--teal); padding: 1.5rem 2rem; margin: 1.5rem 0; }
+  .tos-callout p { font-size: 0.88rem; color: rgba(250, 247, 243,0.82); line-height: 1.75; }
+  .tos-callout p strong { color: var(--gold); }
+
+  /* SIGNATURE */
+  .signature-block { background: var(--cream); padding: 2.5rem; text-align: center; margin-top: 2rem; }
+  .signature-block p { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--teal); line-height: 1.6; margin-bottom: 0.5rem; }
+  .signature-block .sig-name { font-size: 1.3rem; font-style: italic; }
+  .signature-block .sig-contact { font-size: 0.78rem; color: var(--mocha-warm); font-family: var(--sans); letter-spacing: 0.06em; margin-top: 0.5rem; }
+
+
+
+  footer { background: var(--mocha); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: var(--serif); font-size: 0.95rem; font-weight: 500; color: var(--cream); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+  .footer-logo span { color: var(--gold); }
+  .footer-copy { font-size: 0.72rem; color: rgba(250, 247, 243,0.4); }
+
+  @media (max-width: 700px) {
+    header { padding: 1rem 1.5rem; }
+    .content-wrap { padding: 2.5rem 1.5rem 4rem; }
+    footer { flex-direction: column; }
+  }
+
+  @media print {
+    header, footer { display: none; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tos-callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://texturedtalent.github.io/texturedtalent-home/" class="logo">Textured <span>Talent</span>™</a>
+  <a href="../" class="back-link">← Back to The First Read™</a>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">The First Read™ — Textured Talent™</div>
+  <h1>Terms of Engagement</h1>
+  <p>Please read these terms carefully before completing your purchase. By submitting payment, you agree to the terms outlined below.</p>
+</div>
+
+<div class="effective-bar">
+  <p>Effective Date: June 9, 2026 &nbsp;·&nbsp; Textured Talent™ &nbsp;·&nbsp; hello@texturedtalent.com</p>
+</div>
+
+<div class="content-wrap">
+
+
+
+  <div class="intro-note">
+    <p>These Terms of Engagement ("Terms") govern your purchase of The First Read™ from Textured Talent™, operated by Anisha Hackney. By completing your purchase, you confirm that you have read, understood, and agreed to these Terms in full.</p>
+  </div>
+
+  <!-- 1. SCOPE OF SERVICE -->
+  <div class="tos-section">
+    <span class="section-num">Section 01</span>
+    <h2>Scope of Service</h2>
+    <p>The First Read™ is a strategic resume and CV review service. Your purchase entitles you to the specific deliverables outlined for the tier you selected at the time of purchase.</p>
+    <p><strong>The First Read™ — Recorded ($197)</strong> includes: a strategic resume or CV markup with written annotations, comprehensive written commentary, and one personalized 15-minute Loom video review — all delivered through the R.E.A.D.™ Framework (Reveal, Evaluate, Align, Direct), along with prioritized next steps and rewrite direction.</p>
+    <p><strong>The First Read™ — Live ($397)</strong> includes: everything in the Recorded tier, plus one 30-minute live debrief session, one Personalized Positioning Brief delivered within 48 hours of the debrief, and The Profile Sketch™.</p>
+    <p><strong>This service covers resumes and CVs only.</strong> It does not include LinkedIn profile review, cover letter writing, job application support, interview preparation, ongoing coaching, executive placement, or resume rewriting. These are separate services offered by Textured Talent™ and are not included in The First Read™.</p>
+  </div>
+
+  <!-- 2. WHAT THIS SERVICE IS NOT -->
+  <div class="tos-section">
+    <span class="section-num">Section 02</span>
+    <h2>What This Service Is Not</h2>
+    <p>The First Read™ is a strategic advisory service — not a rewriting, editing, or ghostwriting service. Your deliverables will include expert analysis, strategic direction, and specific recommendations. The implementation of those recommendations is your responsibility.</p>
+    <p>Textured Talent™ does not guarantee specific outcomes, including but not limited to: job offers, interview invitations, callback rates, or employment. Career outcomes depend on many factors outside the scope of this service and outside our control.</p>
+    <p>The First Read™ is not ongoing coaching or a retainer engagement. Your deliverables are discrete, one-time deliverables associated with a single review cycle.</p>
+  </div>
+
+  <!-- 3. ELIGIBILITY -->
+  <div class="tos-section">
+    <span class="section-num">Section 03</span>
+    <h2>Eligibility</h2>
+    <p>The First Read™ is available to professionals navigating their careers in today's market. A strategic resume review can serve anyone, at any stage. The First Read™ is structured to do its deepest work when there is a substantial body of experience to mine and reframe — which is why it best serves professionals with significant career depth.</p>
+    <p>This service is offered as a limited launch engagement with a finite number of intake slots. Textured Talent™ reserves the right to close intake once capacity is reached.</p>
+  </div>
+
+  <!-- 4. INTAKE AND DELIVERY TIMELINE -->
+  <div class="tos-section">
+    <span class="section-num">Section 04</span>
+    <h2>Intake & Delivery Timeline</h2>
+    <p>Your 5-business-day review window begins on the date your completed intake form and resume or CV are received — not on the date of purchase. An incomplete intake or missing document will delay the start of your review window.</p>
+    <p><strong>Business days</strong> are defined as Monday through Friday, excluding U.S. federal holidays. Textured Talent™ will make every effort to deliver within the stated timeline. In the event of an unforeseen delay, you will be notified promptly with a revised delivery date.</p>
+
+    <div class="tos-callout">
+      <p><strong>Live Tier — Debrief Scheduling:</strong> Live tier clients will receive a scheduling link delivered together with their Loom recording. You have a <strong>7 to 10 calendar day window</strong> from your review delivery date to schedule your 30-minute live debrief. Failure to schedule within this window may result in forfeiture of the debrief session without refund. If you require an extension, contact us at hello@texturedtalent.com within the window and we will do our best to accommodate.</p>
+    </div>
+
+    <div class="tos-callout" style="margin-top:1rem;">
+      <p><strong>Live Tier — Positioning Brief:</strong> Your Personalized Positioning Brief and The Profile Sketch™ will be delivered within <strong>48 business hours</strong> of the completion of your live debrief session.</p>
+    </div>
+  </div>
+
+  <!-- 5. CLIENT RESPONSIBILITIES -->
+  <div class="tos-section">
+    <span class="section-num">Section 05</span>
+    <h2>Client Responsibilities</h2>
+    <p>To receive the full benefit of The First Read™, you agree to the following:</p>
+    <ul class="tos-list">
+      <li>Submit your intake form completely and accurately. Incomplete or inaccurate intake information may limit the depth and accuracy of your review.</li>
+      <li>Upload a current resume or CV — the version you would send to an employer today, preferably as an editable Word document or Google Doc rather than a PDF. Outdated, placeholder, or incomplete documents submitted as your resume will be reviewed as submitted.</li>
+      <li>Provide your correct email address for delivery. Textured Talent™ is not responsible for deliverables sent to an incorrect address provided at intake.</li>
+      <li>Live tier clients: schedule your debrief within the stated 7 to 10 calendar day window using the provided scheduling link. Come prepared — having reviewed your recorded materials before the debrief is strongly recommended.</li>
+      <li>Treat all communications with Textured Talent™ with professional respect. We reserve the right to decline or discontinue service in cases of abusive or inappropriate conduct.</li>
+    </ul>
+  </div>
+
+  <!-- 6. REFUND POLICY -->
+  <div class="tos-section">
+    <span class="section-num">Section 06</span>
+    <h2>Refund Policy</h2>
+    <p>You may cancel your purchase within <strong>3 business days</strong> of the transaction date for a full refund, provided your review has not yet been delivered. To cancel, email hello@texturedtalent.com with the subject line "Cancellation Request — The First Read™." After the 3-business-day window closes, purchases are non-refundable. Due to the bespoke, time-intensive, and expert-led nature of this service, no exceptions are made after the cancellation window has closed.</p>
+    <p>This policy reflects the reality that your strategist's time, expertise, and preparation begin before your completed intake arrives. The limited slot you have claimed represents a real commitment of capacity that cannot be reversed or reassigned once confirmed.</p>
+    <p>If you experience a significant life circumstance that prevents you from submitting your intake, please contact us at hello@texturedtalent.com as soon as possible. While we cannot guarantee accommodation, we will review each situation with care and good faith.</p>
+    <p><strong>Tier Upgrades:</strong> Clients who purchase the Recorded tier may upgrade to the Live tier within 3 business days of the original purchase date, provided their review has not yet entered production. The upgrade fee is $200 — the difference between the two tiers — and is completed via a private payment link provided in the purchase confirmation email. After the 3-business-day window closes, upgrades are not available under any circumstances. This policy ensures equity between Recorded clients who upgrade and clients who purchase the Live tier at the outset.</p>
+  </div>
+
+  <!-- 7. INTELLECTUAL PROPERTY -->
+  <div class="tos-section">
+    <span class="section-num">Section 07</span>
+    <h2>Intellectual Property</h2>
+    <p>The R.E.A.D.™ Framework (Reveal, Evaluate, Align, Direct), The Profile Sketch™, the Archetype Integration Protocol™, and all proprietary methodologies, frameworks, and branded terms used in the delivery of this service are the intellectual property of Textured Talent™ and Anisha Hackney. All rights reserved.</p>
+    <p>Your deliverables — the annotated markup, written commentary, Loom video, Positioning Brief, and Profile Sketch™ — are created for your personal, professional use. You may not reproduce, share commercially, or present the framework or methodology as your own.</p>
+    <p>The Loom video review is created for you. You are welcome to keep it private or to share it — in whole or in part, privately or publicly — however you wish. The one boundary is this: you may not reproduce, repackage, resell, or present the R.E.A.D.™ Framework, our methodology, or our written materials as your own work or as a service you offer to others. Your guidance is yours to use and to share; the underlying intellectual property remains Textured Talent's.</p>
+  </div>
+
+  <!-- 8. CONFIDENTIALITY -->
+  <div class="tos-section">
+    <span class="section-num">Section 08</span>
+    <h2>Confidentiality &amp; Permitted Use</h2>
+    <p>Textured Talent™ treats your personal and identifying information — your name, contact details, employer names, and any details that could identify you — with complete confidentiality. Your identifiable materials will not be shared with third parties, nor used in any public or marketing context that identifies you, without your express written consent, and they will not be retained beyond the purposes of this engagement and any future engagement you initiate.</p>
+    <p>Textured Talent™ may, however, use anonymized, de-identified aspects of this work — such as representative examples, positioning and reframing approaches, before-and-after illustrations, and general insights — in its marketing, educational, and promotional content, provided that no personally identifiable information is revealed. Where any portion of your specific engagement may be used in this way, a summary of the contents that may be used will be acknowledged to you at the time your deliverables are delivered.</p>
+    <p>Anonymized, non-identifiable insights from engagements may also inform the ongoing development of Textured Talent™ methodology and training. No personally identifiable information will be used in any such context.</p>
+  </div>
+
+  <!-- 9. PROFILE SKETCH FORWARD USE -->
+  <div class="tos-section">
+    <span class="section-num">Section 09</span>
+    <h2>The Profile Sketch™ & Future Engagements</h2>
+    <p>The Profile Sketch™ (Live tier only) is a condensed professional inventory created for you during this engagement. It is your document. If you choose to engage Textured Talent™ in a future full career representation capacity, your strategist will build from The Profile Sketch™ as a foundation — meaning you will not be asked to re-complete intake processes already covered.</p>
+    <p>The Profile Sketch™ does not obligate you to any future engagement, and Textured Talent™ does not share or use it for any purpose other than serving you within this or a subsequent engagement you initiate.</p>
+  </div>
+
+  <!-- 10. LIMITATION OF LIABILITY -->
+  <div class="tos-section">
+    <span class="section-num">Section 10</span>
+    <h2>Limitation of Liability</h2>
+    <p>Textured Talent™ provides expert strategic guidance based on 35 years of human capital experience. However, career outcomes are influenced by factors entirely outside our control — including market conditions, employer decisions, economic climate, industry cycles, and individual circumstances.</p>
+    <p>Textured Talent™ and Anisha Hackney shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this service, including but not limited to: failure to secure employment, loss of income, or decisions made based on the guidance provided.</p>
+    <p>Our total liability to you under any circumstance shall not exceed the amount you paid for this service.</p>
+  </div>
+
+  <!-- 11. GOVERNING LAW -->
+  <div class="tos-section">
+    <span class="section-num">Section 11</span>
+    <h2>Governing Law & Disputes</h2>
+    <p>These Terms are governed by the laws of the State of California, without regard to conflict of law principles. Any dispute arising from these Terms or from your engagement with Textured Talent™ shall first be addressed through good-faith communication. We ask that you contact us directly at hello@texturedtalent.com before pursuing any formal dispute resolution.</p>
+    <p>If a dispute cannot be resolved through direct communication, the parties agree to pursue mediation before any other formal action.</p>
+  </div>
+
+  <!-- 12. MODIFICATIONS -->
+  <div class="tos-section">
+    <span class="section-num">Section 12</span>
+    <h2>Modifications to These Terms</h2>
+    <p>Textured Talent™ reserves the right to modify these Terms at any time. Changes will be effective upon posting to this page. Your continued use of Textured Talent™ services following any modification constitutes your acceptance of the updated Terms. The Terms in effect at the time of your purchase govern your specific engagement.</p>
+  </div>
+
+  <!-- 13. CONTACT -->
+  <div class="tos-section">
+    <span class="section-num">Section 13</span>
+    <h2>Questions & Contact</h2>
+    <p>If you have any questions about these Terms before or after your purchase, we want to hear from you. Reach us directly at <strong>hello@texturedtalent.com</strong>. We respond within one business day.</p>
+    <p>We take every client engagement seriously — and that begins with being reachable, honest, and clear about exactly what you can expect from us.</p>
+  </div>
+
+  <div class="signature-block">
+    <p>These Terms are issued by:</p>
+    <p class="sig-name">Anisha Hackney</p>
+    <p>Founder, Textured Talent™</p>
+    <p class="sig-contact">hello@texturedtalent.com &nbsp;·&nbsp; texturedtalent.com</p>
+    <p class="sig-contact" style="margin-top:0.8rem;">Effective: June 9, 2026</p>
+  </div>
+
+</div>
+
+<footer>
+  <a href="https://texturedtalent.github.io/texturedtalent-home/" class="footer-logo">Textured <span>Talent</span>™</a>
+  <div class="footer-copy">© 2026 Textured Talent™. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
