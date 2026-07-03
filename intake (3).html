@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Intake — The First Read™ | Textured Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #0a3d38; --teal-mid: #14665e; --eggplant: #3b1a3a;
+    --mocha: #2e1d14; --mocha-warm: #8b5e45;
+    --cream: #f5ede0; --cream-warm: #ede0cc; --cream-deep: #d9c8b0;
+    --gold: #c49a5a; --gold-light: #e8c98a;
+    --text-dark: #1a1008; --text-mid: #4a3528; --white: #fdfaf6;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--text-dark); overflow-x: hidden; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  header { background: var(--teal); padding: 1.5rem 3rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(196,154,90,0.2); position: sticky; top: 0; z-index: 50; }
+  .logo { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--cream); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .logo span { color: var(--gold); }
+  .header-right { display: flex; align-items: center; gap: 1.5rem; }
+  .progress-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(196,154,90,0.7); }
+  .progress-bar-wrap { width: 120px; height: 3px; background: rgba(196,154,90,0.2); border-radius: 2px; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); border-radius: 2px; width: 0%; transition: width 0.4s ease; }
+
+  .intake-intro { background: var(--teal); padding: 4rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
+  .intake-intro::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 100%, rgba(59,26,58,0.35) 0%, transparent 60%); pointer-events: none; }
+  .intake-intro .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; position: relative; }
+  .intake-intro h1 { font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.12; margin-bottom: 1.2rem; position: relative; }
+  .intake-intro h1 em { font-style: italic; color: var(--gold-light); }
+  .intake-intro p { font-family: var(--serif); font-size: 1.15rem; font-weight: 300; font-style: italic; color: rgba(245,237,224,0.7); max-width: 620px; margin: 0 auto; line-height: 1.6; position: relative; }
+
+  .instructions { background: var(--eggplant); padding: 2rem; display: flex; align-items: flex-start; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .instruction-item { display: flex; align-items: flex-start; gap: 1rem; max-width: 260px; }
+  .instruction-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: rgba(196,154,90,0.4); line-height: 1; flex-shrink: 0; }
+  .instruction-text strong { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+  .instruction-text p { font-size: 0.85rem; color: rgba(245,237,224,0.6); line-height: 1.5; }
+
+  .form-wrap { max-width: 780px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .form-section { background: var(--white); margin-bottom: 2rem; padding: 2.8rem 3rem; border: 1px solid var(--cream-deep); }
+  .form-section-header { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--cream-warm); }
+  .section-num { font-family: var(--serif); font-size: 3.5rem; font-weight: 300; color: var(--cream-deep); line-height: 1; flex-shrink: 0; }
+  .section-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; display: block; }
+  .section-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--teal); line-height: 1.2; margin-bottom: 0.4rem; }
+  .section-desc { font-size: 0.88rem; color: var(--mocha-warm); line-height: 1.6; font-style: italic; }
+
+  .field-group { display: flex; flex-direction: column; gap: 1.8rem; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .field label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); }
+  .required { color: var(--gold); margin-left: 2px; }
+  .hint { font-size: 0.8rem; color: var(--mocha-warm); line-height: 1.5; font-style: italic; margin-top: -0.2rem; }
+
+  .field input[type="text"], .field input[type="email"], .field input[type="tel"],
+  .field select, .field textarea {
+    font-family: var(--sans); font-size: 0.95rem; color: var(--text-dark);
+    background: var(--white); border: 1px solid var(--cream-deep);
+    padding: 0.85rem 1rem; border-radius: 0; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+    -webkit-appearance: none; appearance: none;
+  }
+  .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b5e45' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--teal-mid); box-shadow: 0 0 0 3px rgba(20,102,94,0.08); }
+  .field textarea { resize: vertical; min-height: 100px; line-height: 1.65; }
+  .field textarea.tall { min-height: 140px; }
+
+  .radio-group, .check-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .radio-group.inline, .check-group.inline { flex-direction: row; flex-wrap: wrap; gap: 0.6rem; }
+  .radio-option, .check-option { display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; padding: 0.7rem 1rem; border: 1px solid var(--cream-deep); background: var(--white); transition: border-color 0.2s, background 0.2s; }
+  .radio-option:hover, .check-option:hover { border-color: var(--teal-mid); background: rgba(20,102,94,0.03); }
+  .radio-option input, .check-option input { width: 16px; height: 16px; accent-color: var(--teal); flex-shrink: 0; cursor: pointer; margin-top: 2px; }
+  .radio-option span, .check-option span { font-size: 0.9rem; color: var(--text-mid); line-height: 1.45; }
+
+  .field-divider { height: 1px; background: var(--cream-warm); margin: 0.4rem 0; }
+  .subsection-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); padding-bottom: 0.5rem; border-bottom: 1px solid var(--cream-warm); }
+
+  /* ── SALARY CALLOUT BOX ── */
+  .salary-context {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .salary-context p { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--mocha); line-height: 1.6; }
+
+  /* ── LIVE UPGRADE CALLOUT ── */
+  .live-upgrade-callout {
+    background: var(--teal);
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    border: none;
+  }
+  .live-upgrade-callout .eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+  .live-upgrade-callout h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.3; }
+  .live-upgrade-callout h3 em { font-style: italic; color: var(--gold-light); }
+  .live-upgrade-callout p { font-size: 0.85rem; color: rgba(245,237,224,0.7); line-height: 1.7; }
+
+  .file-upload-zone { border: 1.5px dashed var(--cream-deep); padding: 3rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--white); position: relative; }
+  .file-upload-zone:hover { border-color: var(--teal-mid); background: rgba(20,102,94,0.02); }
+  .file-upload-zone.has-file { border-color: var(--teal-mid); background: rgba(20,102,94,0.04); }
+  .file-upload-zone input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+  .upload-icon { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--cream-deep); display: block; margin-bottom: 0.8rem; line-height: 1; font-style: italic; }
+  .upload-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; display: block; }
+  .upload-hint { font-size: 0.8rem; color: var(--mocha-warm); font-style: italic; }
+  .file-name { margin-top: 1rem; font-size: 0.85rem; color: var(--teal-mid); font-weight: 500; display: none; }
+  .file-name.visible { display: block; }
+
+
+  .secure-upload-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-deep);
+    border-left: 3px solid var(--gold);
+    padding: 2rem;
+  }
+  .secure-upload-card h3 {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--teal);
+    margin-bottom: 0.6rem;
+  }
+  .secure-upload-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 1rem; }
+  .secure-upload-steps { margin: 0.5rem 0 1.4rem 1.1rem; color: var(--text-mid); font-size: 0.88rem; line-height: 1.7; }
+  .secure-upload-steps li { margin-bottom: 0.35rem; }
+  .secure-upload-link {
+    font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--teal); background: var(--gold); padding: 0.95rem 1.7rem; border: none; border-radius: 2px;
+    cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-block; text-decoration: none;
+  }
+  .secure-upload-link:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .secure-upload-note { margin-top: 1rem; font-size: 0.78rem; color: var(--mocha-warm); font-style: italic; }
+
+  .upload-confirmation-option {
+    display: flex; align-items: flex-start; gap: 0.85rem; margin-top: 1.35rem; padding: 1rem 1.1rem;
+    background: var(--white); border: 1px solid var(--cream-deep); cursor: pointer;
+  }
+  .upload-confirmation-option input { width: 18px; height: 18px; accent-color: var(--teal); flex-shrink: 0; margin-top: 3px; }
+  .upload-confirmation-option span { font-size: 0.88rem; color: var(--text-mid); line-height: 1.55; }
+  .upload-required-message { display: none; margin-top: 0.85rem; font-size: 0.82rem; color: #8b1a1a; line-height: 1.5; }
+  .upload-required-message.visible { display: block; }
+  .success-panel {
+    display: none; background: var(--teal); padding: 2.5rem 3rem; margin: 0 auto 3rem; border: 1px solid rgba(196,154,90,0.25);
+  }
+  .success-panel.visible { display: block; }
+  .success-panel .eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+  .success-panel h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--cream); margin-bottom: 0.8rem; }
+  .success-panel p { color: rgba(245,237,224,0.72); font-size: 0.92rem; line-height: 1.7; }
+
+  .char-count { font-size: 0.72rem; color: var(--cream-deep); text-align: right; margin-top: 0.3rem; transition: color 0.2s; }
+  .char-count.warning { color: var(--gold); }
+  .char-count.over { color: #8b1a1a; }
+
+  .final-section { background: var(--teal); padding: 2.8rem 3rem; margin-bottom: 2rem; }
+  .final-section .section-tag { color: var(--gold); margin-bottom: 0.3rem; }
+  .final-section .section-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--cream); margin-bottom: 0.4rem; }
+  .final-section .section-desc { font-size: 0.88rem; color: rgba(245,237,224,0.6); line-height: 1.6; font-style: italic; margin-bottom: 2rem; }
+  .final-section .field label { color: rgba(196,154,90,0.85); }
+  .final-section .field textarea { background: rgba(245,237,224,0.06); border-color: rgba(196,154,90,0.25); color: var(--cream); }
+  .final-section .field textarea::placeholder { color: rgba(245,237,224,0.3); }
+  .final-section .field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(196,154,90,0.1); }
+  .final-section .hint { color: rgba(245,237,224,0.45); }
+
+  .consent-block { background: var(--white); padding: 2rem 3rem; border: 1px solid var(--cream-deep); margin-bottom: 2rem; }
+  .consent-option { display: flex; align-items: flex-start; gap: 1rem; cursor: pointer; }
+  .consent-option input { width: 18px; height: 18px; accent-color: var(--teal); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+  .consent-option span { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+  .consent-option span a { color: var(--teal-mid); text-decoration: none; border-bottom: 1px solid rgba(20,102,94,0.3); }
+
+  .submit-wrap { text-align: center; padding: 1rem 0 2rem; }
+  .submit-note { font-size: 0.82rem; color: var(--mocha-warm); margin-bottom: 1.5rem; font-style: italic; }
+  .btn-submit { font-family: var(--sans); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); background: var(--gold); padding: 1.1rem 3.5rem; border: none; border-radius: 2px; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .submit-reassurance { margin-top: 1.2rem; font-size: 0.75rem; color: var(--cream-deep); letter-spacing: 0.06em; }
+
+  footer { background: var(--mocha); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: var(--serif); font-size: 0.95rem; font-weight: 500; color: var(--cream); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+  .footer-logo span { color: var(--gold); }
+  .footer-right { font-size: 0.75rem; color: rgba(245,237,224,0.3); }
+  .footer-right a { color: rgba(245,237,224,0.45); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    header { padding: 1rem 1.5rem; }
+    .header-right .progress-label { display: none; }
+    .form-section, .final-section, .consent-block { padding: 2rem 1.5rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .instructions { gap: 1.5rem; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://texturedtalent.com" class="logo">Textured <span>Talent</span>™</a>
+  <div class="header-right">
+    <span class="progress-label">Intake Progress</span>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+</header>
+
+<div class="intake-intro">
+  <div class="eyebrow">The First Read™ — Client Intake</div>
+  <h1>This is where<br>your review <em>begins.</em></h1>
+  <p>What you share here shapes everything that follows. Answer as fully as you're comfortable — your strategist reads every word before opening your resume.</p>
+</div>
+
+<div class="instructions">
+  <div class="instruction-item">
+    <div class="instruction-num">01</div>
+    <div class="instruction-text"><strong>Be Specific</strong><p>Vague answers produce vague feedback. The more context you give, the more precise and useful your review will be.</p></div>
+  </div>
+  <div class="instruction-item">
+    <div class="instruction-num">02</div>
+    <div class="instruction-text"><strong>Be Candid</strong><p>Share what isn't working, what you're unsure about, what hasn't landed. Be as candid as you're comfortable being.</p></div>
+  </div>
+  <div class="instruction-item">
+    <div class="instruction-num">03</div>
+    <div class="instruction-text"><strong>Your Review Begins Here</strong><p>Your delivery timeline begins once your intake is complete, your resume/CV is received and usable, payment is complete, and the cancellation window has cleared.</p></div>
+  </div>
+</div>
+
+<div class="form-wrap">
+<form id="intakeForm" action="https://hook.us2.make.com/6i9mfn1ft53qyyarvlq6xy4w95m8bot9" method="POST" target="makeSubmitFrame">
+  <input type="hidden" name="form_type" value="tfr_main_intake">
+  <input type="hidden" name="internal_case_id" id="internal_case_id">
+  <input type="hidden" name="intake_key" id="intake_key">
+  <input type="hidden" name="purchase_email" id="purchase_email">
+  <input type="hidden" name="source" value="first_read_purchase">
+  <input type="hidden" name="resume_upload_link_clicked" id="resume_upload_link_clicked" value="no">
+
+  <!-- SECTION 1: YOUR DETAILS -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">01</div>
+      <div class="section-meta">
+        <span class="section-tag">Getting Started</span>
+        <div class="section-title">Your Details</div>
+        <div class="section-desc">Basic information so we know exactly who this review belongs to.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field-row">
+        <div class="field"><label>First Name <span class="required">✦</span></label><input type="text" name="first_name" placeholder="Your first name" required></div>
+        <div class="field"><label>Last Name <span class="required">✦</span></label><input type="text" name="last_name" placeholder="Your last name" required></div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Email Address <span class="required">✦</span></label>
+          <span class="hint">The address your completed review will be delivered to. Please double-check this.</span>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <span class="hint">Required for Live tier — used for debrief scheduling only.</span>
+          <input type="tel" name="phone" placeholder="(000) 000-0000">
+        </div>
+      </div>
+      <div class="field">
+        <label>Which Tier Did You Purchase? <span class="required">✦</span></label>
+        <div class="radio-group inline">
+          <label class="radio-option"><input type="radio" name="tier" value="recorded" required><span>The First Read™ — Recorded ($197)</span></label>
+          <label class="radio-option"><input type="radio" name="tier" value="live"><span>The First Read™ — Live ($397)</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: YOUR DOCUMENT -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">02</div>
+      <div class="section-meta">
+        <span class="section-tag">Your Document</span>
+        <div class="section-title">Upload Your Resume or CV</div>
+        <div class="section-desc">Please upload the most current version — the one you would send to an employer today.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <div class="secure-upload-card" id="secureUploadCard">
+          <h3>Your résumé/CV must be uploaded before you submit this intake.</h3>
+          <p>To keep your document secure and route it properly, please use the secure upload link below instead of attaching your résumé/CV to this intake form.</p>
+          <ol class="secure-upload-steps">
+            <li>Click the secure upload button. It will open in a new tab.</li>
+            <li>Upload your most current résumé or CV as a PDF, DOC, or DOCX file.</li>
+            <li>Return to this intake page and confirm the upload below before submitting.</li>
+          </ol>
+          <a class="secure-upload-link" id="resumeUploadLink" href="https://texturedtalent-my.sharepoint.com/:f:/p/anisha/IgCDIu-ZYHwBRLTy3ss5DgB3AXPcxOGzSpvp8qqy0PPVmII" target="_blank" rel="noopener">Open Secure Upload Link →</a>
+          <label class="upload-confirmation-option">
+            <input type="checkbox" name="resume_cv_upload_confirmed" id="resume_cv_upload_confirmed" value="yes" required>
+            <span>I confirm that I have uploaded my résumé/CV through the secure link above.</span>
+          </label>
+          <div class="upload-required-message" id="uploadRequiredMessage">Please upload your résumé/CV through the secure link and check the confirmation box before submitting your intake.</div>
+          <div class="secure-upload-note">Your document is handled confidentially and will be connected to your First Read™ case record inside Textured Talent’s secure workflow.</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Document Type <span class="required">✦</span></label>
+        <div class="radio-group inline">
+          <label class="radio-option"><input type="radio" name="doc_type" value="resume" required><span>Resume (1–2 pages)</span></label>
+          <label class="radio-option"><input type="radio" name="doc_type" value="cv"><span>CV (3+ pages / academic / clinical)</span></label>
+          <label class="radio-option"><input type="radio" name="doc_type" value="unsure"><span>I'm not sure — please advise</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>How Long Have You Been Using This Version?</label>
+        <select name="doc_age">
+          <option value="" disabled selected>Select one</option>
+          <option value="less_3mo">Less than 3 months</option>
+          <option value="3_6mo">3 to 6 months</option>
+          <option value="6_12mo">6 months to 1 year</option>
+          <option value="1_2yr">1 to 2 years</option>
+          <option value="2yr_plus">More than 2 years</option>
+          <option value="unsure">I honestly don't remember</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: PROFESSIONAL CONTEXT -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">03</div>
+      <div class="section-meta">
+        <span class="section-tag">Professional Context</span>
+        <div class="section-title">Where You Are Right Now</div>
+        <div class="section-desc">Your strategist needs to understand your current landscape before opening your resume. This context shapes everything.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field-row">
+        <div class="field"><label>Your Most Recent or Current Title <span class="required">✦</span></label><input type="text" name="current_title" placeholder="e.g. VP of Operations" required></div>
+        <div class="field"><label>Industry or Field <span class="required">✦</span></label><input type="text" name="industry" placeholder="e.g. Healthcare, Finance, Education" required></div>
+      </div>
+      <div class="field">
+        <label>Your Current Employment Status <span class="required">✦</span></label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="employment_status" value="employed_active" required><span>Currently employed and actively searching</span></label>
+          <label class="radio-option"><input type="radio" name="employment_status" value="employed_passive"><span>Currently employed but open to the right opportunity</span></label>
+          <label class="radio-option"><input type="radio" name="employment_status" value="between_roles"><span>Between roles — intentionally or otherwise</span></label>
+          <label class="radio-option"><input type="radio" name="employment_status" value="transitioning"><span>Transitioning — changing industries, sectors, or focus areas</span></label>
+          <label class="radio-option"><input type="radio" name="employment_status" value="returning"><span>Returning after a career pause or caregiving season</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Total Years of Professional Experience <span class="required">✦</span></label>
+        <select name="years_experience" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="15_20">15 to 20 years</option>
+          <option value="20_25">20 to 25 years</option>
+          <option value="25_30">25 to 30 years</option>
+          <option value="30_35">30 to 35 years</option>
+          <option value="35_plus">35 or more years</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: YOUR GOALS & COMPENSATION -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">04</div>
+      <div class="section-meta">
+        <span class="section-tag">Your Direction & Compensation</span>
+        <div class="section-title">Where You're Headed</div>
+        <div class="section-desc">Be as specific as you can. Compensation context helps your strategist understand your target market and how your resume needs to be positioned to reach it.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>What Types of Roles Are You Targeting? <span class="required">✦</span></label>
+        <span class="hint">Include titles, levels, and industries if you have them. If you're still exploring, say so — and tell us what you're exploring.</span>
+        <textarea name="target_roles" class="tall" placeholder="e.g. Chief People Officer or VP of HR in mid-market private equity-backed companies in healthcare or professional services. Open to both full-time and fractional engagements." required></textarea>
+      </div>
+      <div class="field">
+        <label>Geographic Preferences</label>
+        <div class="radio-group inline">
+          <label class="radio-option"><input type="radio" name="geography" value="specific_location"><span>Specific location(s)</span></label>
+          <label class="radio-option"><input type="radio" name="geography" value="remote_only"><span>Remote only</span></label>
+          <label class="radio-option"><input type="radio" name="geography" value="flexible"><span>Flexible / open</span></label>
+          <label class="radio-option"><input type="radio" name="geography" value="national"><span>National / willing to relocate</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>If Specific Locations — Please List Them</label>
+        <input type="text" name="locations" placeholder="e.g. San Francisco Bay Area, Chicago, Austin">
+      </div>
+      <div class="field">
+        <label>What Is Your Ideal Timeline for Making a Move? <span class="required">✦</span></label>
+        <select name="timeline" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="immediately">Immediately — I need to move now</option>
+          <option value="30_60">Within 30 to 60 days</option>
+          <option value="60_90">Within 60 to 90 days</option>
+          <option value="3_6mo">Within 3 to 6 months</option>
+          <option value="6mo_plus">6 months or more — I'm being strategic</option>
+          <option value="exploring">Still exploring — no hard timeline yet</option>
+        </select>
+      </div>
+
+      <div class="field-divider"></div>
+      <div class="subsection-label">Compensation</div>
+
+      <div class="salary-context">
+        <p>Salary context helps your strategist understand the market you're targeting — and whether your resume is positioned to reach it. These fields are optional. Share what you're comfortable sharing.</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Current or Most Recent Compensation Range</label>
+          <span class="hint">Total compensation including base, bonus, and equity if applicable.</span>
+          <select name="current_salary">
+            <option value="" disabled selected>Select a range</option>
+            <option value="prefer_not">Prefer not to say</option>
+            <option value="under_75">Under $75,000</option>
+            <option value="75_100">$75,000 – $100,000</option>
+            <option value="100_125">$100,000 – $125,000</option>
+            <option value="125_150">$125,000 – $150,000</option>
+            <option value="150_175">$150,000 – $175,000</option>
+            <option value="175_200">$175,000 – $200,000</option>
+            <option value="200_250">$200,000 – $250,000</option>
+            <option value="250_300">$250,000 – $300,000</option>
+            <option value="300_400">$300,000 – $400,000</option>
+            <option value="400_500">$400,000 – $500,000</option>
+            <option value="500_plus">$500,000+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Target Compensation Range</label>
+          <span class="hint">What you're aiming for in your next role.</span>
+          <select name="target_salary">
+            <option value="" disabled selected>Select a range</option>
+            <option value="prefer_not">Prefer not to say</option>
+            <option value="under_75">Under $75,000</option>
+            <option value="75_100">$75,000 – $100,000</option>
+            <option value="100_125">$100,000 – $125,000</option>
+            <option value="125_150">$125,000 – $150,000</option>
+            <option value="150_175">$150,000 – $175,000</option>
+            <option value="175_200">$175,000 – $200,000</option>
+            <option value="200_250">$200,000 – $250,000</option>
+            <option value="250_300">$250,000 – $300,000</option>
+            <option value="300_400">$300,000 – $400,000</option>
+            <option value="400_500">$400,000 – $500,000</option>
+            <option value="500_plus">$500,000+</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anything Else About Compensation We Should Know?</label>
+        <span class="hint">e.g. you're open to equity-heavy packages, targeting a step up, flexible on base if benefits are strong, open to fractional or consulting rates, etc.</span>
+        <textarea name="salary_context" placeholder="Optional — share any context that would help your strategist understand your compensation picture..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: THE STORY -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">05</div>
+      <div class="section-meta">
+        <span class="section-tag">The Story</span>
+        <div class="section-title">What's Behind This Transition</div>
+        <div class="section-desc">This is where your strategist begins to understand not just what you've done — but what brought you here. There are no wrong answers.</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>What Is Driving This Transition or Search Right Now? <span class="required">✦</span></label>
+        <span class="hint">Be as candid as you're comfortable being. Layoff, burnout, growth, life change, calling — we've heard it all and we're not here to judge any of it. Context makes the review better.</span>
+        <textarea name="transition_story" class="tall" placeholder="Tell us what brought you here..." required></textarea>
+      </div>
+      <div class="field">
+        <label>If You Have Been Actively Searching — How Has That Been Going?</label>
+        <span class="hint">Response rates, feedback received, stages you've reached, what hasn't been landing. If you haven't started yet, leave this blank.</span>
+        <textarea name="search_experience" placeholder="Share what the search has looked like so far, if applicable..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: YOUR RESUME -->
+  <div class="form-section">
+    <div class="form-section-header">
+      <div class="section-num">06</div>
+      <div class="section-meta">
+        <span class="section-tag">The Work Itself</span>
+        <div class="section-title">Your Resume — As You See It</div>
+        <div class="section-desc">Before your strategist reads your document, we want to know how you see it. Check everything that applies. Use the open fields to expand on anything the options didn't cover.</div>
+      </div>
+    </div>
+    <div class="field-group">
+
+      <div class="subsection-label">What Are Your Biggest Concerns? <span class="required" style="color:var(--gold)">✦</span></div>
+      <div class="field">
+        <div class="check-group">
+          <label class="check-option"><input type="checkbox" name="concerns" value="gaps"><span>Unexplained or hard-to-explain gaps in employment</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="length"><span>Length — too long, too short, or genuinely unsure</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="format"><span>Formatting — visual presentation, readability, or ATS compatibility</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="tone"><span>Tone — too passive, too corporate, not distinctive enough</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="titles"><span>Job titles that don't reflect my actual scope or level of responsibility</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="achievements"><span>Achievements are buried, vague, or not quantified well</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="narrative"><span>No clear narrative thread — it reads like a list, not a professional story</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="age"><span>Concerned about how my experience timeline may signal my age</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="overqualified"><span>Worried about appearing overqualified for roles I genuinely want</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="pivot"><span>A career pivot or transition that feels hard to position</span></label>
+          <label class="check-option"><input type="checkbox" name="concerns" value="other_concern"><span>Something else — I'll explain below</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anything to Add About Your Concerns?</label>
+        <textarea name="concerns_other" placeholder="Expand on any of the above, or share something that didn't fit the list..."></textarea>
+      </div>
+
+      <div class="field-divider"></div>
+      <div class="subsection-label">What's Been Hard to Position or Present?</div>
+      <div class="field">
+        <div class="check-group">
+          <label class="check-option"><input type="checkbox" name="presentation" value="consulting"><span>Independent consulting, freelance, or contract work</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="caregiving"><span>A caregiving or personal leave season</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="board"><span>Board service, volunteer leadership, or advisory roles</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="entrepreneurship"><span>Entrepreneurship or business ownership</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="demotion"><span>A step back in title or seniority level</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="short_tenure"><span>A short tenure or role I left quickly</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="multi_industry"><span>Experience across multiple industries that feels hard to unify</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="credentials"><span>Credentials, certifications, or education that feels out of place</span></label>
+          <label class="check-option"><input type="checkbox" name="presentation" value="other_presentation"><span>Something else — I'll explain below</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anything to Add About Presentation Challenges?</label>
+        <textarea name="presentation_other" placeholder="Tell us what feels difficult to position..."></textarea>
+      </div>
+
+      <div class="field-divider"></div>
+      <div class="subsection-label">What Feels Missing or Underrepresented?</div>
+      <div class="field">
+        <div class="check-group">
+          <label class="check-option"><input type="checkbox" name="missing" value="impact"><span>The real scale or impact of my work — it reads smaller than it was</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="leadership"><span>Leadership depth — the number of people, the scope of influence</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="strategic"><span>Strategic contributions — I operated at a high level but it reads as operational</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="speaking"><span>Speaking, thought leadership, or public-facing visibility</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="publications"><span>Publications, research, or written work</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="awards"><span>Awards, recognition, or industry honors</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="cross_functional"><span>Cross-functional or enterprise-wide scope of influence</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="early_career"><span>Foundational early-career experience that still matters and belongs</span></label>
+          <label class="check-option"><input type="checkbox" name="missing" value="other_missing"><span>Something else — I'll explain below</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Anything to Add About What's Missing?</label>
+        <textarea name="missing_other" placeholder="What do you wish your resume showed more of?"></textarea>
+      </div>
+
+      <div class="field-divider"></div>
+      <div class="field">
+        <label>On a Scale of 1–10, How Confident Are You in Your Resume Right Now?</label>
+        <select name="confidence_level">
+          <option value="" disabled selected>Select one</option>
+          <option value="1">1 — I have serious doubts about nearly everything</option>
+          <option value="2">2</option>
+          <option value="3">3 — It needs significant work</option>
+          <option value="4">4</option>
+          <option value="5">5 — Some sections feel solid; others concern me</option>
+          <option value="6">6</option>
+          <option value="7">7 — Mostly confident, but a few things feel off</option>
+          <option value="8">8</option>
+          <option value="9">9 — I think it's strong but want expert confirmation</option>
+          <option value="10">10 — Confident. I just want a second set of expert eyes.</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: ANYTHING ELSE -->
+  <div class="final-section">
+    <span class="section-tag">Final Thoughts</span>
+    <div class="section-title">Anything Else Your Strategist Should Know</div>
+    <div class="section-desc">An open field. If something is on your mind that didn't fit anywhere above — a specific concern, a piece of context, something you want to make sure doesn't get missed — put it here. There is no wrong answer. There is only what you wish someone knew before they started.</div>
+    <br>
+    <div class="field">
+      <label>Open Space — Use It</label>
+      <textarea name="anything_else" class="tall" placeholder="Use this space however you need to..."></textarea>
+    </div>
+  </div>
+
+  <!-- CONSENT -->
+  <div class="consent-block">
+    <label class="consent-option">
+      <input type="checkbox" name="consent" required>
+      <span>I confirm that the information I have provided is accurate to the best of my knowledge, and that I have reviewed and agree to the <a href="{{TERMS_URL}}">Terms of Engagement</a> for The First Read™. I understand The First Read™ is an advisory review and not a resume rewrite. I also understand that my delivery timeline begins only after payment is complete, the cancellation window has cleared, my intake is complete, my resume/CV has been received and is usable, and my case record has been created.</span>
+    </label>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+    <p class="submit-note">Take a moment to review your answers before submitting. Your intake can only be submitted after your résumé/CV upload is confirmed.</p>
+    <button type="submit" class="btn-submit" id="submitBtn">Submit My Intake →</button>
+    <p class="submit-reassurance">Your intake and document are handled with complete confidentiality · Delivery begins after readiness is confirmed</p>
+  </div>
+
+</form>
+<iframe name="makeSubmitFrame" id="makeSubmitFrame" style="display:none;"></iframe>
+<div class="success-panel" id="submissionSuccess" role="status" aria-live="polite">
+  <span class="eyebrow">Intake Received</span>
+  <h2>Your First Read™ intake has been submitted.</h2>
+  <p>Thank you. Textured Talent has received your intake submission and résumé/CV upload confirmation. Your review timeline begins once all readiness requirements have been satisfied.</p>
+</div>
+</div>
+
+<footer>
+  <a href="https://texturedtalent.com" class="footer-logo">Textured <span>Talent</span>™</a>
+  <div class="footer-right">Questions? <a href="mailto:hello@texturedtalent.com">hello@texturedtalent.com</a></div>
+</footer>
+
+<script>
+  const form = document.getElementById('intakeForm');
+  const progressBar = document.getElementById('progressBar');
+  const requiredFields = form.querySelectorAll('[required]');
+
+  function updateProgress() {
+    let filled = 0; const seen = new Set();
+    requiredFields.forEach(field => {
+      const name = field.name; if (seen.has(name)) return; seen.add(name);
+      if (field.type === 'radio' || field.type === 'checkbox') { if (form.querySelector(`[name="${name}"]:checked`)) filled++; }
+      else if (field.value.trim()) { filled++; }
+    });
+    const pct = Math.min(100, Math.round((filled / seen.size) * 100));
+    progressBar.style.width = pct + '%';
+  }
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', updateProgress);
+
+  const params = new URLSearchParams(window.location.search);
+  const internalCaseId = params.get('case') || params.get('case_id') || params.get('cid') || '';
+  const intakeKey = params.get('key') || params.get('intake_key') || '';
+  const purchaseEmail = params.get('email') || params.get('purchase_email') || '';
+  const tierParam = (params.get('tier') || '').toLowerCase();
+  const uploadParam = params.get('upload') || params.get('upload_url') || '';
+
+  const internalCaseField = document.getElementById('internal_case_id');
+  const intakeKeyField = document.getElementById('intake_key');
+  const purchaseEmailField = document.getElementById('purchase_email');
+  if (internalCaseField) internalCaseField.value = internalCaseId;
+  if (intakeKeyField) intakeKeyField.value = intakeKey;
+  if (purchaseEmailField) purchaseEmailField.value = purchaseEmail;
+
+  if (purchaseEmail) {
+    const emailInput = form.querySelector('[name="email"]');
+    if (emailInput && !emailInput.value) emailInput.value = purchaseEmail;
+  }
+  if (tierParam) {
+    const tierInput = form.querySelector(`[name="tier"][value="${tierParam}"]`);
+    if (tierInput) tierInput.checked = true;
+  }
+
+  const resumeUploadLink = document.getElementById('resumeUploadLink');
+  const resumeUploadClicked = document.getElementById('resume_upload_link_clicked');
+  if (resumeUploadLink && uploadParam) {
+    resumeUploadLink.href = uploadParam;
+  }
+  if (resumeUploadLink) {
+    resumeUploadLink.addEventListener('click', () => {
+      if (resumeUploadClicked) resumeUploadClicked.value = 'yes';
+    });
+  }
+
+  const watchedAreas = ['target_roles', 'transition_story'];
+  const limits = { target_roles: 500, transition_story: 1000 };
+  watchedAreas.forEach(name => {
+    const ta = form.querySelector(`[name="${name}"]`); if (!ta) return;
+    const max = limits[name];
+    const counter = document.createElement('div'); counter.className = 'char-count'; counter.textContent = `0 / ${max}`;
+    ta.parentNode.appendChild(counter);
+    ta.addEventListener('input', () => {
+      const len = ta.value.length; counter.textContent = `${len} / ${max}`;
+      counter.className = 'char-count' + (len > max ? ' over' : len > max * 0.85 ? ' warning' : '');
+    });
+  });
+
+  form.addEventListener('submit', function(event) {
+    const uploadConfirmed = document.getElementById('resume_cv_upload_confirmed');
+    const uploadMsg = document.getElementById('uploadRequiredMessage');
+    const uploadCard = document.getElementById('secureUploadCard');
+
+    if (uploadConfirmed && !uploadConfirmed.checked) {
+      event.preventDefault();
+      if (uploadMsg) uploadMsg.classList.add('visible');
+      if (uploadCard) uploadCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    if (uploadMsg) uploadMsg.classList.remove('visible');
+
+    const btn = document.getElementById('submitBtn');
+    const successPanel = document.getElementById('submissionSuccess');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    window.setTimeout(() => {
+      btn.textContent = 'Submitted';
+      if (successPanel) {
+        successPanel.classList.add('visible');
+        successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 1600);
+  });
+</script>
+</body>
+</html>
